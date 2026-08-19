@@ -1,0 +1,675 @@
+<%@ Page Language="C#" %>
+
+<script runat="server">
+    protected string CurrentYear = DateTime.Now.Year.ToString();
+</script>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>EARTHKART | Recycling | Reuse | Environmental Consultancy</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    background:
+    linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.65)),
+    url('https://img.freepik.com/premium-photo/planet-earth-form-shield-illustration-your-design_360032-2823.jpg');
+
+    background-size:cover;
+    background-position:center;
+    background-attachment:fixed;
+
+    color:#fff;
+    overflow-x:hidden;
+}
+
+/*****************************
+        NAVBAR
+*****************************/
+nav{
+
+    width:100%;
+    position:fixed;
+    top:0;
+    left:0;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:18px 8%;
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(12px);
+    z-index:1000;
+
+}
+
+.logo{
+
+    font-size:34px;
+    font-weight:700;
+    color:#7CFC00;
+    letter-spacing:2px;
+
+}
+
+nav ul{
+
+    list-style:none;
+    display:flex;
+    gap:30px;
+
+}
+
+nav ul li a{
+
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+
+}
+
+nav ul li a:hover{
+
+    color:#7CFC00;
+
+}
+
+/*****************************
+        HERO
+*****************************/
+.hero{
+
+    min-height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:130px 20px 60px;
+
+}
+
+.glass{
+
+    width:1000px;
+    max-width:95%;
+
+    background:rgba(255,255,255,.10);
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.2);
+
+    border-radius:25px;
+
+    padding:60px;
+
+    text-align:center;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+    animation:fadeUp 1.2s;
+
+}
+
+.glass h1{
+
+    font-size:62px;
+    color:#7CFC00;
+
+}
+
+.glass h2{
+
+    margin-top:10px;
+    font-weight:300;
+    color:#fff;
+
+}
+
+.tag{
+
+    margin:25px auto;
+
+    display:inline-block;
+
+    background:#7CFC00;
+
+    color:#000;
+
+    padding:10px 25px;
+
+    border-radius:50px;
+
+    font-weight:600;
+
+}
+
+.desc{
+
+    margin-top:25px;
+
+    line-height:2;
+
+    font-size:18px;
+
+}
+
+.notice{
+
+    margin-top:40px;
+
+    background:#fff6d7;
+
+    color:#222;
+
+    padding:30px;
+
+    border-radius:15px;
+
+}
+
+.notice h3{
+
+    color:#0c6d27;
+    margin-bottom:10px;
+
+}
+
+.contact{
+
+    margin-top:40px;
+
+}
+
+.contact h2{
+
+    color:#7CFC00;
+
+}
+
+.phone{
+
+    font-size:28px;
+    font-weight:bold;
+    margin-top:15px;
+
+}
+
+.buttons{
+
+    margin-top:35px;
+
+}
+
+.btn{
+
+    display:inline-block;
+
+    padding:15px 35px;
+
+    border-radius:40px;
+
+    text-decoration:none;
+
+    margin:10px;
+
+    transition:.4s;
+
+}
+
+.btn-green{
+
+    background:#32CD32;
+    color:#fff;
+
+}
+
+.btn-green:hover{
+
+    background:#1b8b2d;
+
+}
+
+.btn-white{
+
+    border:2px solid white;
+    color:white;
+
+}
+
+.btn-white:hover{
+
+    background:white;
+    color:#222;
+
+}
+
+/*****************************
+    SERVICES
+*****************************/
+section{
+
+    padding:80px 8%;
+
+}
+
+.heading{
+
+    text-align:center;
+    font-size:42px;
+    color:#7CFC00;
+    margin-bottom:60px;
+
+}
+
+.cards{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:30px;
+
+}
+
+.card{
+
+    background:rgba(255,255,255,.10);
+
+    backdrop-filter:blur(15px);
+
+    padding:35px;
+
+    border-radius:20px;
+
+    transition:.4s;
+
+}
+
+.card:hover{
+
+    transform:translateY(-10px);
+
+    background:rgba(124,252,0,.15);
+
+}
+
+.card i{
+
+    font-size:45px;
+    color:#7CFC00;
+    margin-bottom:20px;
+
+}
+
+.card h3{
+
+    margin-bottom:15px;
+
+}
+
+/*****************************
+FOOTER
+*****************************/
+
+footer{
+
+    background:#111;
+
+    padding:40px;
+
+    text-align:center;
+
+    color:#bbb;
+
+}
+
+/*****************************
+WHATSAPP
+*****************************/
+
+.whatsapp{
+
+    position:fixed;
+
+    bottom:25px;
+    right:25px;
+
+    width:65px;
+    height:65px;
+
+    border-radius:50%;
+
+    background:#25D366;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    color:white;
+
+    font-size:32px;
+
+    text-decoration:none;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.3);
+
+    z-index:999;
+
+}
+
+.whatsapp:hover{
+
+    transform:scale(1.1);
+
+}
+
+/*****************************
+ANIMATION
+*****************************/
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+transform:translateY(60px);
+
+}
+
+to{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+}
+
+/*****************************
+RESPONSIVE
+*****************************/
+
+@media(max-width:768px){
+
+nav{
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+nav ul{
+
+flex-wrap:wrap;
+justify-content:center;
+
+}
+
+.glass{
+
+padding:35px 20px;
+
+}
+
+.glass h1{
+
+font-size:40px;
+
+}
+
+.heading{
+
+font-size:34px;
+
+}
+
+.phone{
+
+font-size:22px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<form id="form1" runat="server">
+
+<nav>
+
+<div class="logo">
+EARTHKART
+</div>
+
+<ul>
+
+<li><a href="#">Home</a></li>
+<li><a href="#services">Services</a></li>
+<li><a href="#contact">Contact</a></li>
+
+</ul>
+
+</nav>
+
+<div class="hero">
+
+<div class="glass">
+
+<h1>EARTHKART</h1>
+
+<h2>Recycle • Reuse • Sustainability</h2>
+
+<div class="tag">
+Building a Greener Tomorrow
+</div>
+
+<p class="desc">
+
+EarthKart is committed to promoting responsible environmental practices through
+<strong>Recycling</strong>,
+<strong>Reuse</strong>,
+<strong>Corporate Environmental Consultancy</strong>,
+<strong>Waste Management</strong>,
+and
+<strong>Legal Certification Support</strong>.
+
+We partner with organizations to help them move toward sustainable and environmentally responsible operations.
+
+</p>
+
+<div class="notice">
+
+<h3>
+🚧 Website Under Development
+</h3>
+
+<p>
+
+We have recently started our journey and are currently developing our complete corporate website.
+
+Our full-featured portal showcasing our services, consultancy expertise, legal certification assistance, and environmental solutions will be launched soon.
+
+Thank you for your patience and continued support.
+
+</p>
+
+</div>
+
+<div class="buttons">
+
+<a href="#contact" class="btn btn-green">
+Contact Us
+</a>
+
+<a href="#services" class="btn btn-white">
+Our Services
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<section id="services">
+
+<h2 class="heading">
+Our Focus Areas
+</h2>
+
+<div class="cards">
+
+<div class="card">
+
+<i class="fas fa-recycle"></i>
+
+<h3>Recycling</h3>
+
+<p>
+
+Promoting scientific recycling practices to reduce landfill waste and conserve natural resources.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-leaf"></i>
+
+<h3>Reuse Solutions</h3>
+
+<p>
+
+Encouraging sustainable reuse strategies that minimize environmental impact.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-building"></i>
+
+<h3>Corporate Consultancy</h3>
+
+<p>
+
+Professional consultancy for industries and organizations seeking sustainable environmental practices.
+
+</p>
+
+</div>
+
+<div class="card">
+
+<i class="fas fa-certificate"></i>
+
+<h3>Legal Certifications</h3>
+
+<p>
+
+Guidance and consultancy for environmental compliance and regulatory certification processes.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2 class="heading">
+Get In Touch
+</h2>
+
+<div class="glass">
+
+<h2>
+For Business Enquiries
+</h2>
+
+<br/>
+
+<h3>
+Mr. Rahul Gupta
+</h3>
+
+<div class="phone">
+
+<i class="fas fa-phone"></i>
+
++91 7011280377
+
+</div>
+
+<br/>
+
+<p>
+
+We're happy to discuss your recycling, reuse, sustainability,
+environmental consultancy, and corporate compliance requirements.
+
+</p>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 EARTHKART.
+
+All Rights Reserved.
+
+<br/><br/>
+
+Together Towards a Cleaner, Greener and Sustainable Future 🌍♻
+
+</footer>
+
+<a class="whatsapp"
+href="https://wa.me/917011280377"
+target="_blank">
+
+<i class="fab fa-whatsapp"></i>
+
+</a>
+
+</form>
+
+</body>
+</html>
